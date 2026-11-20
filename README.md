@@ -1,7 +1,7 @@
 🕵️ Testeur de fuites de confidentialité
 Ce que ton navigateur dit de toi sans te demander. Un audit de confidentialité 100 % côté client qui montre tout ce qu’un site web peut apprendre sur toi en quelques millisecondes, sans cookie ni autorisation.
 
-🔗 Démo en ligne : https://vbenji23.github.io/PrivacyLeakTester/
+🔗 Démo en ligne : https://vbenji23.github.io/Privacy-Leak-Tester/
 
 🎯 Objectif
 La plupart des gens pensent qu’en supprimant leurs cookies ou en passant en navigation privée, ils deviennent anonymes. Ce projet démontre le contraire grâce au browser fingerprinting (empreinte de navigateur) : en combinant une vingtaine d’informations banales, un site peut calculer un identifiant quasi unique qui te suit de visite en visite.
