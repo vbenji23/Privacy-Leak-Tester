@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Leak Tester — Ce que ton navigateur révèle</title>
+  <meta name="description" content="Audit de confidentialité côté client : découvre tout ce que ton navigateur révèle sans te demander (empreinte, WebRTC, IP, matériel...).">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#">PRIVACY<span>LEAK</span>TESTER</a>
+    <nav>
+      <a href="#hero">Analyse</a>
+      <a href="#how">Comment ça marche</a>
+      <a href="https://github.com/vbenji23/PrivacyLeakTester" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <p class="tag">// audit de confidentialité 100 % côté client</p>
+      <h1>Ce que ton navigateur <span class="accent">dit de toi</span><br>sans te demander.</h1>
+      <p class="lead">
+        Chaque site que tu visites peut lire, en quelques millisecondes, ta carte graphique, tes polices,
+        ton fuseau horaire, ton IP… et en tirer une <strong>empreinte unique</strong> qui te suit sans aucun cookie.
+        Lance l'analyse pour voir ce qui fuit.
+      </p>
+
+      <label class="consent">
+        <input type="checkbox" id="netConsent">
+        <span>Autoriser les <strong>tests réseau</strong> : IP publique (via <code>ipwho.is</code>) et fuite WebRTC (via un serveur STUN de Google).</span>
+      </label>
+
+      <div class="actions">
+        <button id="runBtn" class="btn primary">▶ Lancer l'analyse</button>
+      </div>
+      <p class="small">Aucune donnée n'est stockée sur un serveur. Tout est calculé dans ton navigateur et reste chez toi.</p>
+    </section>
+
+    <section id="summary" class="summary hidden" aria-live="polite"></section>
+
+    <section id="results" class="hidden">
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="grid"></div>
+      <div class="export">
+        <button id="exportBtn" class="btn">⬇ Exporter le rapport (JSON)</button>
+        <button id="copyBtn" class="btn">⧉ Copier le résumé</button>
+      </div>
+    </section>
+
+    <section id="how" class="how">
+      <h2>Comment ça marche ?</h2>
+      <div class="how-grid">
+        <article>
+          <h3>1. Le fingerprinting</h3>
+          <p>Une seule info (ta résolution, ton fuseau) est banale. Mais combinées, une vingtaine d'infos forment une
+            combinaison presque unique : c'est ton <strong>empreinte numérique</strong>. Contrairement à un cookie,
+            tu ne peux pas la supprimer.</p>
+        </article>
+        <article>
+          <h3>2. Canvas, WebGL, Audio</h3>
+          <p>Le site demande à ton navigateur de dessiner une image ou de générer un son invisible. Selon ta carte
+            graphique, ton pilote et ton système, le résultat varie de quelques pixels ou décimales : assez pour te distinguer.</p>
+        </article>
+        <article>
+          <h3>3. La fuite WebRTC</h3>
+          <p>WebRTC sert aux appels vidéo dans le navigateur. Pour trouver le meilleur chemin réseau, il peut révéler ton
+            IP locale, voire ta vraie IP publique <strong>même derrière un VPN</strong> mal configuré.</p>
+        </article>
+        <article>
+          <h3>4. Se protéger</h3>
+          <ul>
+            <li><strong>Tor Browser</strong> ou <strong>Mullvad Browser</strong> : tout le monde a la même empreinte.</li>
+            <li><strong>Firefox</strong> + <code>privacy.resistFingerprinting</code>, ou <strong>Brave</strong> (empreinte randomisée).</li>
+            <li><strong>uBlock Origin</strong> pour bloquer les scripts de traçage.</li>
+            <li>Un <strong>VPN</strong> qui gère la fuite WebRTC, ou WebRTC désactivé.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="tip">💡 <strong>Expérience :</strong> note ton identifiant d'empreinte, ouvre ce site en <em>navigation privée</em> et relance.
+        Si l'identifiant est le même, un site peut te reconnaître <strong>sans aucun cookie</strong>.</p>
+    </section>
+  </main>
+
+  <footer>
+    Projet portfolio cybersécurité — Benjamin Vincenti ·
+    <a href="https://github.com/vbenji23" target="_blank" rel="noopener">github.com/vbenji23</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
